@@ -17,6 +17,7 @@
             <th>No</th>
             <th>Nama User</th>
             <th>Email</th>
+            <th>Role</th>
             <th>Aksi</th>
 
           </tr>
@@ -27,6 +28,13 @@
               <td>{{ ++$no }}</td>
               <td>{{ $us->name }}</td>
               <td>{{ $us->email }}</td>
+              <td>
+                @if ($us->isAdmin == 1)
+                <span>Pemilik</span>
+                @elseif($us->isAdmin == 0)
+                <span>Pengawai</span>
+                @endif
+              </td>
               <td>
                   <a href="{{ route('user.edit', $us->id ) }}" class="btn btn-warning btn-sm">Edit</a>
                   <form id="deleteForm" class="d-inline" action="{{ route('user.delete',$us->id) }}" method="post">

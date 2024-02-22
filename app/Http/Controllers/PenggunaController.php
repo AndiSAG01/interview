@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 
 class PenggunaController extends Controller
@@ -26,17 +25,18 @@ class PenggunaController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|min:8',
-           
+            'isAdmin' => 'boolean', // Pastikan nilai 'isAdmin' berupa boolean
         ]);
 
         // Tetapkan nilai 'isAdmin' berdasarkan input, atau default ke false jika tidak disertakan
-     
+        $isAdmin = $request->has('isAdmin') ? $request->input('isAdmin') : false;
+
         // Simpan data pengguna ke database
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-          
+            'isAdmin' => $isAdmin,
         ]);
 
         // Redirect ke halaman lain atau berikan respons sesuai kebutuhan
@@ -56,11 +56,12 @@ class PenggunaController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $id,
             'password' => 'nullable|min:6', // Password menjadi opsional
-          
+            'isAdmin' => 'boolean', // Pastikan nilai 'isAdmin' berupa boolean
         ]);
     
         // Tetapkan nilai 'isAdmin' berdasarkan input, atau default ke false jika tidak disertakan
-      
+        $isAdmin = $request->has('isAdmin') ? $request->input('isAdmin') : false;
+    
         // Temukan data pengguna berdasarkan ID
         $user = User::findOrFail($id);
     
@@ -68,7 +69,7 @@ class PenggunaController extends Controller
         $user->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-           
+            'isAdmin' => $isAdmin,
         ]);
     
         // Periksa apakah password diisi sebelum mengupdate
