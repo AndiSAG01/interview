@@ -36,12 +36,15 @@
                 @endif
               </td>
               <td>
-                  <a href="{{ route('user.edit', $us->id ) }}" class="btn btn-warning btn-sm">Edit</a>
-                  <form id="deleteForm" class="d-inline" action="{{ route('user.delete',$us->id) }}" method="post">
-                      @csrf
-                      @method('delete')
-                      <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                  </form>
+                  <a href="{{ route('user.edit', $us->id ) }}" class="btn btn-warning btn-sm mb-2">Edit</a>
+                  <form action="{{ route('user.delete', $us->id) }}" method="post" onsubmit="return confirm('Yakin Hapus data')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm ">
+                        <i class="fas fa-trash"></i> Hapus
+                    </button>
+                </form>
+                
               </td>
           </tr>
           @endforeach

@@ -84,9 +84,9 @@ class PenggunaController extends Controller
 
     public function delete($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-        return redirect()->route('user.index')->with('danger','Data User Berhasil Di hapus');
+        User::where('id', $id)->delete();
+
+        return back()->with('success', 'Data berhasil dihapus. Data yang Anda pilih tidak lagi tersedia pada sistem 😁');
+
     }
-    
 }

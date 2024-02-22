@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PenggunaController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,10 @@ Route::post('/user/store', [PenggunaController::class,'store'])->name('user.stor
 Route::get('/user/edit/{id}', [PenggunaController::class,'edit'])->name('user.edit');
 Route::post('/user/update/{id}', [PenggunaController::class,'update'])->name('user.update');
 Route::delete('/user/delete/{id}', [PenggunaController::class,'delete'])->name('user.delete');
+
+Route::get('/product', [ProductController::class, 'index'])->name('admin.product');
+    Route::get('/product/tambah', [ProductController::class, 'tambah'])->name('admin.product.tambah');
+    Route::post('/product/store', [ProductController::class, 'store'])->name('admin.product.store');
+    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
+    Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('admin.product.delete');
+    Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('admin.product.update');
