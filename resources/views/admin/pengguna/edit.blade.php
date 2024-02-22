@@ -22,6 +22,13 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" class="form-control" value="{{ old('password', $user -> password) }}">
             </div>
+            <div class="form-group mb-4">
+                <label for="code">Role</label>
+                <select name="isAdmin" id="code" class="form-control">
+                        <option value="1">Pemilik</option>
+                        <option value="0">Pegawai</option>
+                </select>
+            </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>

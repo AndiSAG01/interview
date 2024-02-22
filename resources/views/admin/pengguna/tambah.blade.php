@@ -7,27 +7,32 @@
             Form Tambah Data User
         </b>
     </div>
-    <div class="container">
-        <div class="card-body">
-            <form action="{{ route('user.store') }}" method="post">
-                @csrf
-                <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Nama</label>
-                    <input type="text" class="form-control" name="name" id="formGroupExampleInput" placeholder="input Nama">
-                </div>
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" id="formGroupExampleInput2" placeholder="input email">
-                </div>
-                <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="formGroupExampleInput2" placeholder="input password">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
-        </div>
+    <div class="card-body text-dark">
+        <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group mb-4">
+                <label for="name">Nama</label>
+                <input type="text" name="name" class="form-control">
+            </div>
+            <div class="form-group mb-4">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control">
+            </div>
+            <div class="form-group mb-4">
+                <label for="password">Password</label>
+                <input type="password" name="password" class="form-control">
+            </div>
+            <div class="form-group mb-4">
+                <label for="code">Role</label>
+                <select name="isAdmin" id="code" class="form-control">
+                        <option value="1">Pemilik</option>
+                        <option value="0">Pegawai</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+        </form>
     </div>
     @endsection
 </main>
